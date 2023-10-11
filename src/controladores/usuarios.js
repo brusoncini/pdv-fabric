@@ -41,6 +41,13 @@ const registrarUsuario = async (req, res) => {
     }
 };
 
+const perfilUsuario = async (req, res) => {
+    return res.status(200).json(req.usuario)
+}
+
+
+
 module.exports = {
-    registrarUsuario
+    registrarUsuario,
+    perfilUsuario
 }
