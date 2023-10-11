@@ -1,6 +1,6 @@
 const express = require("express");
 const verificarUsuarioLogado = require('./intermediarios/autenticacao')
-const { registrarUsuario, perfilUsuario } = require("./controladores/usuarios");
+const { registrarUsuario, perfilUsuario, login } = require("./controladores/usuarios");
 const { listarCategorias } = require("./controladores/categorias");
 
 const rotas = express();
@@ -8,7 +8,7 @@ const rotas = express();
 
 rotas.get("/categoria", listarCategorias);
 rotas.post("/usuario", registrarUsuario);
-rotas.post("/login");
+rotas.post("/login", login);
 rotas.get("/usuario", perfilUsuario);
 rotas.put("/usuario");
 
