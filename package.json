@@ -2,7 +2,7 @@
   "name": "desafio-backend-m03-b2bt05",
   "version": "1.0.0",
   "description": "![](https://i.imgur.com/xG74tOh.png)",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "dev": "nodemon ./src/index.js"
   },
