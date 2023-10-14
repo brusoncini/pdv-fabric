@@ -74,7 +74,7 @@ const login = async (req, res) => {
           .json({ mensagem: "Usuário e/ou senha inválido(s)." });
       }
   
-      const token = jwt.sign({ id: usuario.rows[0].id }, senhaHash, {
+      const token = jwt.sign({ id: usuario.id }, senhaHash, {
         expiresIn: "8h",
       });
   
