@@ -24,7 +24,7 @@ values
 ('Games');
 
 
---teste do banco de dados
+teste do banco de dados
 
 
 
