@@ -1,4 +1,5 @@
 const knex = require('knex');
+const axios = require('axios')
 
 
 const registrarCliente = async (req, res) => {
