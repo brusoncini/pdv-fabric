@@ -11,7 +11,7 @@ const listarCategorias = async (req, res) => {
         return res.status(200).json(categorias);
     } catch (error) {
         console.error('Erro ao listar categorias:', error);
-        return res.status(500).json({ mensagem: 'Erro interno no servidor' });
+        return res.status(500).json(error.message);
     }
 };
 module.exports = {

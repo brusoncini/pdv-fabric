@@ -25,12 +25,14 @@ const registrarUsuario = async (req, res) => {
       return res.status(400).json({ mensagem: "Já existe usuário cadastrado com o e-mail informado." });
     }
 
-    const encryptedPassword = await bcrypt.hash(senha, 10);
+    if (!email) {
+        return res.status(401).json({ mensagem: "O campo email é obrigatório" });
+    const senhaEncriptografada = await bcrypt.hash(senha, 10);
 
     const novoUsuario = {
       nome,
       email,
-      senha: encryptedPassword,
+      senha: senhaEncriptografada ,
     };
 
     const [usuario] = await knex('usuarios').insert(novoUsuario).returning('*');
@@ -40,7 +42,7 @@ const registrarUsuario = async (req, res) => {
     return res.status(201).json(usuario);
   } catch (error) {
     console.log(error)
-    return res.status(500).json({ mensagem: 'Erro interno no servidor' });
+    return res.status(500).json(error.message);
   }
 };
 
@@ -68,6 +70,9 @@ const login = async (req, res) => {
 
     const senhaValida = await bcrypt.compare(senha, usuario.senha);
 
+        if (emailExistente) {
+            return res.status(400).json({ mensagem: "Já existe usuário cadastrado com o e-mail informado." });
+
     if (!senhaValida) {
       return res
         .status(401)
@@ -83,10 +88,9 @@ const login = async (req, res) => {
     return res.json({ usuario: usuarioLogado, token });
   } catch (error) {
     console.error(error.message);
-    return res.status(500).json({ mensagem: "Erro interno do servidor." });
+    return res.status(500).json(error.message);
   }
 };
-
 
 
 const editarUsuario = async (req, res) => {
@@ -103,6 +107,43 @@ const editarUsuario = async (req, res) => {
     if (nome) {
       body.nome = nome
     }
+
+    if (email) {
+      if (email !== req.usuario.email) {
+        const verificaEmail = await knex('usuarios').where({ email }).count('id as count').first()
+
+        if (verificaEmail.count > 0) {
+          return res.status(400).json("O email já está cadastrado");
+        }
+
+    const token = jwt.sign({ id: usuario.id }, senhaHash, {
+      expiresIn: "8h",
+    });
+
+    const { senha: _, ...usuarioLogado } = usuario;
+
+    return res.json({ usuario: usuarioLogado, token });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ mensagem: "Erro interno do servidor." });
+  }
+};
+
+const editarUsuario = async (req, res) => {
+  const { nome, email, senha } = req.body
+  const { id } = req.usuario
+
+  if (!nome && !email && !senha) {
+    return res.status(400).json({ Mensagem: "É obrigatório informar ao menos um campo para atualização." })
+  }
+
+  try {
+    const body = {}
+
+    if (nome) {
+      body.nome = nome
+    }
+};
 
     if (email) {
       if (email !== req.usuario.email) {
@@ -128,11 +169,9 @@ const editarUsuario = async (req, res) => {
     return res.status(200).json({ Mensagem: 'Usuário atualizado com sucesso!' })
 
   } catch (error) {
-    return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+    return res.status(500).json(error.message);
   }
 }
-
-
 
 module.exports = {
   registrarUsuario,
