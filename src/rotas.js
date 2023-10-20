@@ -2,6 +2,7 @@ const express = require("express");
 const verificarUsuarioLogado = require('./intermediarios/autenticacao')
 const { registrarUsuario, perfilUsuario, login, editarUsuario } = require("./controladores/usuarios");
 const { listarCategorias } = require("./controladores/categorias");
+const { registrarCliente } = require("./controladores/clientes")
 const { registrarProduto, listarProdutos } = require("./controladores/produtos");
 
 const rotas = express();
@@ -19,6 +20,7 @@ rotas.post("/produto", registrarProduto);
 rotas.get("/produto", listarProdutos);
 
 
+rotas.post("/cliente", registrarCliente)
 
 
 
