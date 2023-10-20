@@ -28,15 +28,14 @@ const registrarUsuario = async (req, res) => {
     }
 
     if (!email) {
-      return res.status(401).json({ mensagem: "O campo email é obrigatório" });
+        return res.status(401).json({ mensagem: "O campo email é obrigatório" });
     }
-
-    const senhaEncriptografada = await bcrypt.hash(senha, 10);
+    const senhaCriptografada = await bcrypt.hash(senha, 10);
 
     const novoUsuario = {
       nome,
       email,
-      senha: senhaEncriptografada,
+      senha: senhaCriptografada ,
     };
 
     const [usuario] = await knex("usuarios").insert(novoUsuario).returning("*");
@@ -64,26 +63,20 @@ const login = async (req, res) => {
         .json({ mensagem: "Campos obrigatórios não preenchidos." });
     }
 
-    const usuario = await knex("usuarios").where("email", email).first();
+    const emailExiste = await knex('usuarios').where('email', email).first();
 
-    if (!usuario) {
+    if (!emailExiste) {
       return res
         .status(401)
-        .json({ mensagem: "Usuário e/ou senha inválido(s)." });
+        .json({ mensagem: "E-mail e/ou senha inválido(s)." });
     }
 
     const senhaValida = await bcrypt.compare(senha, usuario.senha);
 
-    if (emailExistente) {
-      return res.status(400).json({
-        mensagem: "Já existe usuário cadastrado com o e-mail informado.",
-      });
-    }
-
     if (!senhaValida) {
       return res
         .status(401)
-        .json({ mensagem: "Usuário e/ou senha inválido(s)." });
+        .json({ mensagem: "E-mail e/ou senha inválido(s)." });
     }
 
     const token = jwt.sign({ id: usuario.id }, senhaHash, {
