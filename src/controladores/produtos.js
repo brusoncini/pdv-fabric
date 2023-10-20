@@ -1,59 +1,59 @@
 const knex = require("../conexao");
 
 const registrarProduto = async (req, res) => {
-    const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
+  const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
 
-    
-    if (!descricao || typeof descricao !== 'string') {
-        return res.status(400).json({ mensagem: 'O campo "descricao" é obrigatório e deve ser uma string' });
-      }
-    
-      if (!quantidade_estoque || typeof quantidade_estoque !== 'number') {
-        return res.status(400).json({ mensagem: 'O campo "quantidade_estoque" é obrigatório e deve ser um número inteiro' });
-      }
-    
-      if (!valor || typeof valor !== 'number') {
-        return res.status(400).json({ mensagem: 'O campo "valor" é obrigatório e deve ser um número' });
-      }
-    
-      if (!categoria_id || typeof categoria_id !== 'number') {
-        return res.status(400).json({ mensagem: 'O campo "categoria_id" é obrigatório e deve ser um número inteiro' });
-      }
-    try {
+
+  if (!descricao || typeof descricao !== 'string') {
+    return res.status(400).json({ mensagem: 'O campo "descricao" é obrigatório e deve ser uma string' });
+  }
+
+  if (!quantidade_estoque || typeof quantidade_estoque !== 'number') {
+    return res.status(400).json({ mensagem: 'O campo "quantidade_estoque" é obrigatório e deve ser um número inteiro' });
+  }
+
+  if (!valor || typeof valor !== 'number') {
+    return res.status(400).json({ mensagem: 'O campo "valor" é obrigatório e deve ser um número' });
+  }
+
+  if (!categoria_id || typeof categoria_id !== 'number') {
+    return res.status(400).json({ mensagem: 'O campo "categoria_id" é obrigatório e deve ser um número inteiro' });
+  }
+  try {
 
     const categoriaExistente = await knex('categorias').where('id', categoria_id).first();
-  
+
     if (!categoriaExistente) {
       return res.status(400).json({ mensagem: 'A categoria informada não existe' });
     }
-   
+
     const produtoExistente = await knex('produtos').where('descricao', descricao).first();
 
     if (produtoExistente) {
       return res.status(400).json({ mensagem: 'A descrição informada já está em uso' });
     }
-  
-    
-      
-      const novoProduto = {
-        descricao,
-        quantidade_estoque,
-        valor,
-        categoria_id,
-      };
-  
-      const [produto] = await knex('produtos').insert(novoProduto).returning('*');
-  
-      res.status(201).json(produto);
-    } catch (error) {
-        return res.status(500).json(error.message);
-    }
-  };
 
 
 
-  const listarProdutos = async (req, res) => {
-    const { categoria_id } = req.query;
+    const novoProduto = {
+      descricao,
+      quantidade_estoque,
+      valor,
+      categoria_id,
+    };
+
+    const [produto] = await knex('produtos').insert(novoProduto).returning('*');
+
+    res.status(201).json(produto);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
+
+
+const listarProdutos = async (req, res) => {
+  const { categoria_id } = req.query;
 
   try {
     let produtos;
@@ -62,7 +62,7 @@ const registrarProduto = async (req, res) => {
       if (isNaN(categoria_id)) {
         return res.status(400).json({ mensagem: 'O parâmetro "categoria_id" deve ser um número inteiro válido' });
       }
-      
+
       const categoriaExistente = await knex('categorias').where('id', categoria_id).first();
 
       if (!categoriaExistente) {
@@ -80,7 +80,36 @@ const registrarProduto = async (req, res) => {
   }
 };
 
-  module.exports = {
-    registrarProduto,
-    listarProdutos
+
+const editarProduto = async (req, res) => {
+  const { id } = req.params
+  const { descricao, quantidade_estoque, valor, categoria_id } = req.body
+
+  if (!descricao && !quantidade_estoque && !valor && !categoria_id) {
+    return res.status(400).json({ Mensagem: "Informe ao menos um campo para atualização do produto!" })
   }
+
+  try {
+    const encontrarProduto = await knex('produtos').where({ id }).first()
+
+    if (!encontrarProduto) {
+      return res.status(404).json({ Mensagem: "Produto não encontrado!" })
+    }
+
+    const produtoAtualizado = await knex('produtos').update({ descricao, quantidade_estoque, valor, categoria_id }).where({ id }).returning('*')
+
+    if (produtoAtualizado.length === 0) {
+      return res.status(400).json({ Mensagem: "O produto não foi atualizado!" })
+    }
+
+    return res.status(200).json({ Mensagem: "Produto atualizado com sucesso: ", produtoAtualizado })
+  } catch (error) {
+    return res.status(400).json(error.message)
+  }
+}
+
+module.exports = {
+  registrarProduto,
+  listarProdutos,
+  editarProduto
+}

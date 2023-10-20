@@ -19,10 +19,12 @@ const registrarUsuario = async (req, res) => {
   }
 
   try {
-    const emailExistente = await knex('usuarios').where({ email }).first();
+    const emailExistente = await knex("usuarios").where({ email }).first();
 
     if (emailExistente) {
-      return res.status(400).json({ mensagem: "Já existe usuário cadastrado com o e-mail informado." });
+      return res.status(400).json({
+        mensagem: "Já existe usuário cadastrado com o e-mail informado.",
+      });
     }
 
     if (!email) {
@@ -36,20 +38,20 @@ const registrarUsuario = async (req, res) => {
       senha: senhaCriptografada ,
     };
 
-    const [usuario] = await knex('usuarios').insert(novoUsuario).returning('*');
+    const [usuario] = await knex("usuarios").insert(novoUsuario).returning("*");
 
     delete usuario.senha;
 
     return res.status(201).json(usuario);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json(error.message);
   }
 };
 
 const perfilUsuario = async (req, res) => {
-  return res.status(200).json(req.usuario)
-}
+  return res.status(200).json(req.usuario);
+};
 
 const login = async (req, res) => {
   const { email, senha } = req.body;
@@ -70,7 +72,6 @@ const login = async (req, res) => {
     }
 
     const senhaValida = await bcrypt.compare(senha, usuario.senha);
-
 
     if (!senhaValida) {
       return res
@@ -139,10 +140,9 @@ const editarUsuario = async (req, res) => {
   }
 };
 
-
 module.exports = {
   registrarUsuario,
   perfilUsuario,
   login,
-  editarUsuario
-}
+  editarUsuario,
+};
