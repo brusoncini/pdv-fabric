@@ -27,12 +27,13 @@ const registrarUsuario = async (req, res) => {
 
     if (!email) {
         return res.status(401).json({ mensagem: "O campo email é obrigatório" });
-    const senhaEncriptografada = await bcrypt.hash(senha, 10);
+    }
+    const senhaCriptografada = await bcrypt.hash(senha, 10);
 
     const novoUsuario = {
       nome,
       email,
-      senha: senhaEncriptografada ,
+      senha: senhaCriptografada ,
     };
 
     const [usuario] = await knex('usuarios').insert(novoUsuario).returning('*');
@@ -60,23 +61,21 @@ const login = async (req, res) => {
         .json({ mensagem: "Campos obrigatórios não preenchidos." });
     }
 
-    const usuario = await knex('usuarios').where('email', email).first();
+    const emailExiste = await knex('usuarios').where('email', email).first();
 
-    if (!usuario) {
+    if (!emailExiste) {
       return res
         .status(401)
-        .json({ mensagem: "Usuário e/ou senha inválido(s)." });
+        .json({ mensagem: "E-mail e/ou senha inválido(s)." });
     }
 
     const senhaValida = await bcrypt.compare(senha, usuario.senha);
 
-        if (emailExistente) {
-            return res.status(400).json({ mensagem: "Já existe usuário cadastrado com o e-mail informado." });
 
     if (!senhaValida) {
       return res
         .status(401)
-        .json({ mensagem: "Usuário e/ou senha inválido(s)." });
+        .json({ mensagem: "E-mail e/ou senha inválido(s)." });
     }
 
     const token = jwt.sign({ id: usuario.id }, senhaHash, {
@@ -92,86 +91,54 @@ const login = async (req, res) => {
   }
 };
 
-
 const editarUsuario = async (req, res) => {
-  const { nome, email, senha } = req.body
-  const { id } = req.usuario
+  const { nome, email, senha } = req.body;
+  const { id } = req.usuario;
 
   if (!nome && !email && !senha) {
-    return res.status(400).json({ Mensagem: "É obrigatório informar ao menos um campo para atualização." })
-  }
-
-  try {
-    const body = {}
-
-    if (nome) {
-      body.nome = nome
-    }
-
-    if (email) {
-      if (email !== req.usuario.email) {
-        const verificaEmail = await knex('usuarios').where({ email }).count('id as count').first()
-
-        if (verificaEmail.count > 0) {
-          return res.status(400).json("O email já está cadastrado");
-        }
-
-    const token = jwt.sign({ id: usuario.id }, senhaHash, {
-      expiresIn: "8h",
+    return res.status(400).json({
+      Mensagem: "É obrigatório informar ao menos um campo para atualização.",
     });
-
-    const { senha: _, ...usuarioLogado } = usuario;
-
-    return res.json({ usuario: usuarioLogado, token });
-  } catch (error) {
-    console.error(error.message);
-    return res.status(500).json({ mensagem: "Erro interno do servidor." });
-  }
-};
-
-const editarUsuario = async (req, res) => {
-  const { nome, email, senha } = req.body
-  const { id } = req.usuario
-
-  if (!nome && !email && !senha) {
-    return res.status(400).json({ Mensagem: "É obrigatório informar ao menos um campo para atualização." })
   }
 
   try {
-    const body = {}
+    const body = {};
 
     if (nome) {
-      body.nome = nome
+      body.nome = nome;
     }
-};
-
     if (email) {
       if (email !== req.usuario.email) {
-        const verificaEmail = await knex('usuarios').where({ email }).count('id as count').first()
+        const verificaEmail = await knex("usuarios")
+          .where({ email })
+          .count("id as count")
+          .first();
 
         if (verificaEmail.count > 0) {
           return res.status(400).json("O email já está cadastrado");
         }
       }
-      body.email = email
+      body.email = email;
     }
 
     if (senha) {
-      body.senha = await bcrypt.hash(senha, 10)
+      body.senha = await bcrypt.hash(senha, 10);
     }
 
-    const usuarioAtualizado = await knex('usuarios').where({ id }).update(body)
+    const usuarioAtualizado = await knex("usuarios").where({ id }).update(body);
 
     if (!usuarioAtualizado) {
-      return res.status(400).json("Não foi possível atualizar o usuário")
+      return res.status(400).json("Não foi possível atualizar o usuário");
     }
 
-    return res.status(200).json({ Mensagem: 'Usuário atualizado com sucesso!' })
-
+    return res
+      .status(200)
+      .json({ Mensagem: "Usuário atualizado com sucesso!" });
   } catch (error) {
     return res.status(500).json(error.message);
   }
-}
+};
+
 
 module.exports = {
   registrarUsuario,
