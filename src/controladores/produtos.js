@@ -151,9 +151,15 @@ const listarProdutos = async (req, res) => {
 const detalharProduto = async (req, res) => {
   const { id } = req.params;
 
+  if (isNaN(id)) {
+    return res.status(404).json({ mensagem: "Erro no ID do produto. Digite um número válido." })
+  }
   try {
-    const produto = knex("produtos").where("id", id).first()
+    const produto = await knex("produtos").where("id", id).first()
 
+    if (!produto) {
+      return res.status(404).json({ mensagem: "Produto não encontrado." })
+    }
     return res.status(200).json(produto)
   } catch (error) {
     return res.status(500).json(error.message)
