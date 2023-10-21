@@ -38,7 +38,6 @@ const registrarCliente = async (req, res) => {
          if (!dadosEndereco || dadosEndereco.erro) {
             return res.status(404).json({ mensagem: 'Endereço não encontrado. Tente novamente com um CEP válido.' });
          }
-         // não obrigatório informar cep mas opcional.
          rua = dadosEndereco.logradouro
          bairro = dadosEndereco.bairro
          cidade = dadosEndereco.localidade
@@ -123,7 +122,6 @@ const editarCliente = async (req, res) => {
             return res.status(404).json({ Mensagem: "Endereço não encontrado!" })
          }
 
-
          rua = dadosEndereco.logradouro
          bairro = dadosEndereco.bairro
          cidade = dadosEndereco.localidade
@@ -161,8 +159,31 @@ const editarCliente = async (req, res) => {
    }
 }
 
+
+const listarClientes = async (req, res) => {
+   const { offset } = req.query
+
+   const paginacao = offset ? offset : 0;
+
+   try {
+      const clientes = await knex("clientes").select("*")
+         .limit(20).offset(paginacao)
+
+      if (!clientes.length === 0) {
+         return res.status(404).json({ mensagem: "Não existem clientes cadastrados." })
+      }
+
+      return res.status(200).json(clientes)
+
+   } catch (error) {
+      return res.status(500).json(error.message)
+   }
+}
+
+
+
 module.exports = {
    registrarCliente,
+   listarClientes,
    editarCliente
-
 }
