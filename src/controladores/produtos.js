@@ -70,43 +70,6 @@ const registrarProduto = async (req, res) => {
   }
 };
 
-const listarProdutos = async (req, res) => {
-  const { categoria_id } = req.query;
-
-  try {
-    let produtos;
-
-    if (categoria_id) {
-      if (isNaN(categoria_id)) {
-        return res
-          .status(400)
-          .json({
-            mensagem:
-              'O parâmetro "categoria_id" deve ser um número inteiro válido',
-          });
-      }
-
-      const categoriaExistente = await knex("categorias")
-        .where("id", categoria_id)
-        .first();
-
-      if (!categoriaExistente) {
-        return res
-          .status(400)
-          .json({ mensagem: "A categoria informada não existe" });
-      }
-
-      produtos = await knex("produtos").where("categoria_id", categoria_id);
-    } else {
-      produtos = await knex("produtos");
-    }
-
-    res.status(200).json(produtos);
-  } catch (error) {
-    return res.status(500).json(error.message);
-  }
-};
-
 const editarProduto = async (req, res) => {
   const { id } = req.params;
   const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
@@ -148,6 +111,56 @@ const editarProduto = async (req, res) => {
   }
 };
 
+const listarProdutos = async (req, res) => {
+  const { categoria_id } = req.query;
+
+  try {
+    let produtos;
+
+    if (categoria_id) {
+      if (isNaN(categoria_id)) {
+        return res
+          .status(400)
+          .json({
+            mensagem:
+              'O parâmetro "categoria_id" deve ser um número inteiro válido',
+          });
+      }
+
+      const categoriaExistente = await knex("categorias")
+        .where("id", categoria_id)
+        .first();
+
+      if (!categoriaExistente) {
+        return res
+          .status(400)
+          .json({ mensagem: "A categoria informada não existe" });
+      }
+
+      produtos = await knex("produtos").where("categoria_id", categoria_id);
+    } else {
+      produtos = await knex("produtos");
+    }
+
+    res.status(200).json(produtos);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
+const detalharProduto = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const produto = knex("produtos").where("id", id).first()
+
+    return res.status(200).json(produto)
+  } catch (error) {
+    return res.status(500).json(error.message)
+  }
+
+}
+
 const deletarProduto = async (req, res) => {
   const { id } = req.params;
 
@@ -166,7 +179,8 @@ const deletarProduto = async (req, res) => {
 
 module.exports = {
   registrarProduto,
-  listarProdutos,
   editarProduto,
+  listarProdutos,
+  detalharProduto,
   deletarProduto,
 };
