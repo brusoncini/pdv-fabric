@@ -152,7 +152,7 @@ const deletarProduto = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const produtoDeletado = await db("produtos").where("id", id).del();
+    const produtoDeletado = await knex("produtos").where("id", id).del();
 
     if (produtoDeletado === 1) {
       return res.status(200).json({ message: "Produto excluído com sucesso." });
