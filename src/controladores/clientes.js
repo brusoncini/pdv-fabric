@@ -192,7 +192,7 @@ const detalharCliente = async (req, res) => {
   const { id } = req.params;
   
   try {
-   const cliente = await db('clientes').where('id', id).first();
+   const cliente = await knex('clientes').where('id', id).first();
 
    if (cliente) {
      return res.status(200).json(cliente);
