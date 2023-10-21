@@ -19,7 +19,6 @@ rotas.get("/usuario", perfilUsuario);
 rotas.put("/usuario", editarUsuario);
 
 rotas.post("/produto", registrarProduto);
-
 rotas.put("/produto/:id", editarProduto);
 rotas.get("/produto", listarProdutos);
 rotas.get("/produto/:id", detalharProduto)
@@ -27,7 +26,7 @@ rotas.delete("/produto/:id", deletarProduto);
 
 rotas.post("/cliente", registrarCliente);
 rotas.put("/cliente/:id", editarCliente);
-rotas.get("cliente", listarClientes);
+rotas.get("/cliente", listarClientes);
 rotas.get("/cliente/:id", detalharCliente);
 
 module.exports = rotas;
