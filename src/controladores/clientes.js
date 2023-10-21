@@ -87,6 +87,28 @@ const registrarCliente = async (req, res) => {
   }
 };
 
+
+const listarClientes = async (req, res) => {
+  const { offset } = req.query
+
+  const paginacao = offset ? offset : 0;
+
+  try {
+    const clientes = await knex("clientes").select("*")
+      .limit(20).offset(paginacao)
+
+    if (!clientes.length === 0) {
+      return res.status(404).json({ mensagem: "Não existem clientes cadastrados." })
+    }
+
+    return res.status(200).json(clientes)
+
+  } catch (error) {
+    return res.status(500).json(error.message)
+  }
+}
+
+
 const editarCliente = async (req, res) => {
   const { id } = req.params;
   const { nome, email, cpf, cep, numero } = req.body;
@@ -188,17 +210,18 @@ const editarCliente = async (req, res) => {
   }
 };
 
+
 const detalharCliente = async (req, res) => {
   const { id } = req.params;
-  
-  try {
-   const cliente = await knex('clientes').where('id', id).first();
 
-   if (cliente) {
-     return res.status(200).json(cliente);
-   } else {
-     return res.status(404).json({ message: "Cliente não encontrado" });
-   }
+  try {
+    const cliente = await knex('clientes').where('id', id).first();
+
+    if (cliente) {
+      return res.status(200).json(cliente);
+    } else {
+      return res.status(404).json({ message: "Cliente não encontrado" });
+    }
 
   } catch (error) {
     return res.status(500).json(error.message);
@@ -207,6 +230,7 @@ const detalharCliente = async (req, res) => {
 
 module.exports = {
   registrarCliente,
+  listarClientes,
   editarCliente,
   detalharCliente,
 };
