@@ -42,7 +42,7 @@ const registrarUsuario = async (req, res) => {
 
     delete usuario.senha;
 
-    return res.status(201).json(usuario);
+    return res.status(201).json({ Mensagem: "Usuário cadastrado com sucesso", usuario });
   } catch (error) {
     console.log(error);
     return res.status(500).json(error.message);
@@ -126,7 +126,7 @@ const editarUsuario = async (req, res) => {
       body.senha = await bcrypt.hash(senha, 10);
     }
 
-    const usuarioAtualizado = await knex("usuarios").where({ id }).update(body);
+    const usuarioAtualizado = await knex("usuarios").where({ id }).update(body).returning('*');
 
     if (!usuarioAtualizado) {
       return res.status(400).json("Não foi possível atualizar o usuário");
@@ -134,7 +134,7 @@ const editarUsuario = async (req, res) => {
 
     return res
       .status(200)
-      .json({ Mensagem: "Usuário atualizado com sucesso!" });
+      .json({ Mensagem: "Usuário atualizado com sucesso!", usuarioAtualizado });
   } catch (error) {
     return res.status(500).json(error.message);
   }
