@@ -1,6 +1,5 @@
-const knex = require('../conexao');
-const enderecamento = require('../utilidades.js/enderecamento')
-
+const knex = require("../conexao");
+const enderecamento = require("../utilidades.js/enderecamento");
 
 const registrarCliente = async (req, res) => {
   const { nome, email, cpf, cep, numero } = req.body
@@ -122,8 +121,6 @@ const editarCliente = async (req, res) => {
       if (!dadosEndereco || dadosEndereco.erro) {
         return res.status(404).json({ Mensagem: "Endereço não encontrado!" })
       }
-
-
       rua = dadosEndereco.logradouro
       bairro = dadosEndereco.bairro
       cidade = dadosEndereco.localidade
@@ -161,8 +158,60 @@ const editarCliente = async (req, res) => {
   }
 }
 
+    if (!cliente) {
+      return res
+        .status(400)
+        .json({ mensagem: "O cliente não foi cadastrado." });
+    }
+
+    return res
+      .status(200)
+      .json({ mensagem: "Cliente cadastrado com sucesso." });
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
+const listarClientes = async (req, res) => {
+  const { offset } = req.query
+
+  const paginacao = offset ? offset : 0;
+
+  try {
+    const clientes = await knex("clientes").select("*")
+      .limit(10).offset(paginacao)
+
+    if (clientes.length === 0) {
+      return res.status(404).json({ mensagem: "Não existem clientes cadastrados." })
+    }
+
+    return res.status(200).json(clientes)
+
+  } catch (error) {
+    return res.status(500).json(error.message)
+  }
+};
+
+const detalharCliente = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const cliente = await knex('clientes').where('id', id).first();
+
+    if (cliente) {
+      return res.status(200).json(cliente);
+    } else {
+      return res.status(404).json({ message: "Cliente não encontrado" });
+    }
+
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
 module.exports = {
   registrarCliente,
-  editarCliente
-
-}
+  editarCliente,
+  listarClientes,
+  detalharCliente,
+};
