@@ -28,21 +28,21 @@ const registrarUsuario = async (req, res) => {
     }
 
     if (!email) {
-        return res.status(401).json({ mensagem: "O campo email é obrigatório" });
+      return res.status(401).json({ mensagem: "O campo email é obrigatório" });
     }
     const senhaCriptografada = await bcrypt.hash(senha, 10);
 
     const novoUsuario = {
       nome,
       email,
-      senha: senhaCriptografada ,
+      senha: senhaCriptografada,
     };
 
     const [usuario] = await knex("usuarios").insert(novoUsuario).returning("*");
 
     delete usuario.senha;
 
-    return res.status(201).json(usuario);
+    return res.status(201).json({ Mensagem: "Usuário cadastrado com sucesso", usuario });
   } catch (error) {
     console.log(error);
     return res.status(500).json(error.message);
@@ -56,16 +56,17 @@ const perfilUsuario = async (req, res) => {
 const login = async (req, res) => {
   const { email, senha } = req.body;
 
+  if (!email || !senha) {
+    return res
+      .status(400)
+      .json({ mensagem: "Campos obrigatórios não preenchidos." });
+  }
+
   try {
-    if (!email || !senha) {
-      return res
-        .status(400)
-        .json({ mensagem: "Campos obrigatórios não preenchidos." });
-    }
 
-    const emailExiste = await knex('usuarios').where('email', email).first();
+    const usuario = await knex('usuarios').where({ email }).first();
 
-    if (!emailExiste) {
+    if (!usuario) {
       return res
         .status(401)
         .json({ mensagem: "E-mail e/ou senha inválido(s)." });
@@ -87,7 +88,6 @@ const login = async (req, res) => {
 
     return res.json({ usuario: usuarioLogado, token });
   } catch (error) {
-    console.error(error.message);
     return res.status(500).json(error.message);
   }
 };
@@ -126,7 +126,7 @@ const editarUsuario = async (req, res) => {
       body.senha = await bcrypt.hash(senha, 10);
     }
 
-    const usuarioAtualizado = await knex("usuarios").where({ id }).update(body);
+    const usuarioAtualizado = await knex("usuarios").where({ id }).update(body).returning('*');
 
     if (!usuarioAtualizado) {
       return res.status(400).json("Não foi possível atualizar o usuário");
@@ -134,7 +134,7 @@ const editarUsuario = async (req, res) => {
 
     return res
       .status(200)
-      .json({ Mensagem: "Usuário atualizado com sucesso!" });
+      .json({ Mensagem: "Usuário atualizado com sucesso!", usuarioAtualizado });
   } catch (error) {
     return res.status(500).json(error.message);
   }

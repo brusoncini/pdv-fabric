@@ -44,7 +44,7 @@ const registrarProduto = async (req, res) => {
 
     const [produto] = await knex('produtos').insert(novoProduto).returning('*');
 
-    res.status(201).json(produto);
+    res.status(201).json({ Mensagem: "Produto cadastrado com sucesso!", produto });
   } catch (error) {
     return res.status(500).json(error.message);
   }
