@@ -20,9 +20,8 @@ const esquemaProduto = joi.object({
         'number.integer': mensagensErro.numeroInvalido
     }),
 
-    //tem algum erro apenas nessa parte de categoria_id... vou ver com calma depois
-    categoria_id: joi.number().required().min(1).max(9).message({
-        'any.required': mensagensErro.obrigatorio,
+    categoria_id: joi.number().required().min(1).max(9).messages({
+        'any.required': mensagensErro.msgCategoriaId,
         'number.base': mensagensErro.msgCategoriaId,
         'number.max': mensagensErro.msgCategoriaId,
         'number.min': mensagensErro.msgCategoriaId
