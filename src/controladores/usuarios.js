@@ -6,17 +6,7 @@ const senhaHash = require("../senhaHash");
 const registrarUsuario = async (req, res) => {
   const { nome, email, senha } = req.body;
 
-  if (!nome) {
-    return res.status(401).json({ mensagem: "O campo nome é obrigatório" });
-  }
 
-  if (!email) {
-    return res.status(401).json({ mensagem: "O campo email é obrigatório" });
-  }
-
-  if (!senha) {
-    return res.status(401).json({ mensagem: "A senha é obrigatória" });
-  }
 
   try {
     const emailExistente = await knex("usuarios").where({ email }).first();
@@ -56,11 +46,6 @@ const perfilUsuario = async (req, res) => {
 const login = async (req, res) => {
   const { email, senha } = req.body;
 
-  if (!email || !senha) {
-    return res
-      .status(400)
-      .json({ mensagem: "Campos obrigatórios não preenchidos." });
-  }
 
   try {
 
