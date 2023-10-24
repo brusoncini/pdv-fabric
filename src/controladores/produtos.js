@@ -3,37 +3,7 @@ const knex = require("../conexao");
 const registrarProduto = async (req, res) => {
   const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
 
-  if (!descricao || typeof descricao !== "string") {
-    return res
-      .status(400)
-      .json({
-        mensagem: 'O campo "descricao" é obrigatório e deve ser uma string',
-      });
-  }
 
-  if (!quantidade_estoque || typeof quantidade_estoque !== "number") {
-    return res
-      .status(400)
-      .json({
-        mensagem:
-          'O campo "quantidade_estoque" é obrigatório e deve ser um número inteiro',
-      });
-  }
-
-  if (!valor || typeof valor !== "number") {
-    return res
-      .status(400)
-      .json({ mensagem: 'O campo "valor" é obrigatório e deve ser um número' });
-  }
-
-  if (!categoria_id || typeof categoria_id !== "number") {
-    return res
-      .status(400)
-      .json({
-        mensagem:
-          'O campo "categoria_id" é obrigatório e deve ser um número inteiro',
-      });
-  }
   try {
     const categoriaExistente = await knex("categorias")
       .where("id", categoria_id)
@@ -74,21 +44,17 @@ const editarProduto = async (req, res) => {
   const { id } = req.params;
   const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
 
-  if (!descricao && !quantidade_estoque && !valor && !categoria_id) {
-    return res
-      .status(400)
-      .json({
-        Mensagem: "Informe ao menos um campo para atualização do produto!",
-      });
-  }
-
   try {
     const encontrarProduto = await knex("produtos").where({ id }).first();
 
     if (!encontrarProduto) {
-      return res.status(404).json({ Mensagem: "Produto não encontrado!" });
+      return res.status(404).json({ Mensagem: "Produto não encontrado!" })
     }
+    const produtoExistente = await knex("produtos").where("descricao", descricao).first()
 
+    if (produtoExistente) {
+      return res.status(400).json({ mensagem: "A descrição informada já está em uso" })
+    }
     const produtoAtualizado = await knex("produtos")
       .update({ descricao, quantidade_estoque, valor, categoria_id })
       .where({ id })
@@ -97,7 +63,7 @@ const editarProduto = async (req, res) => {
     if (produtoAtualizado.length === 0) {
       return res
         .status(400)
-        .json({ Mensagem: "O produto não foi atualizado!" });
+        .json({ Mensagem: "O produto não foi atualizado!" })
     }
 
     return res

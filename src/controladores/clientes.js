@@ -1,21 +1,8 @@
 const knex = require("../conexao");
-const enderecamento = require("../utilidades.js/enderecamento");
+const enderecamento = require("../utilidades/enderecamento");
 
 const registrarCliente = async (req, res) => {
   const { nome, email, cpf, cep, numero } = req.body
-
-  if (!nome) {
-    return res.status(404).json({ mensagem: 'O nome do cliente deve ser informado.' });
-  }
-  if (!email) {
-    return res.status(404).json({ mensagem: 'O e-mail do cliente deve ser informado.' });
-  }
-  if (!cpf) {
-    return res.status(404).json({ mensagem: 'O CPF do cliente deve ser informado.' });
-  }
-  if (cpf.length !== 11) {
-    return res.status(404).json({ mensagem: 'CPF inválido. Por favor, verifique se foi digitado corretamente' });
-  }
 
   try {
 
@@ -72,16 +59,6 @@ const registrarCliente = async (req, res) => {
 const editarCliente = async (req, res) => {
   const { id } = req.params;
   const { nome, email, cpf, cep, numero } = req.body;
-
-  if (!nome) {
-    return res.status(400).json({ Mensagem: "O nome é obrigatório" });
-  }
-  if (!email) {
-    return res.status(400).json({ Mensagem: "O e-mail é obrigatório" });
-  }
-  if (!cpf) {
-    return res.status(400).json({ Mensagem: "O CPF é obrigatório" });
-  }
 
   try {
     const body = {};
