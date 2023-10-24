@@ -1,1 +1,1 @@
-module.exports = 'UmaSenhaSegura'
+module.exports = process.env.SENHA_JWT
