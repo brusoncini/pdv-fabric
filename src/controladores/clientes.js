@@ -47,7 +47,7 @@ const registrarCliente = async (req, res) => {
       return res.status(400).json({ mensagem: 'O cliente não foi cadastrado.' })
     }
 
-    return res.status(200).json({ mensagem: "Cliente cadastrado com sucesso.", cliente })
+    return res.status(201).json({ mensagem: "Cliente cadastrado com sucesso.", cliente })
 
   } catch (error) {
     return res.status(500).json(error.message)

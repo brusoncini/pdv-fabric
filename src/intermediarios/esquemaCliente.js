@@ -2,7 +2,7 @@ const joi = require('joi')
 const mensagensErro = require('../utilidades/mensagensErro')
 
 const esquemaCliente = joi.object({
-    nome: joi.string().pattern(/^[A-Za-z\s]+$/).required().messages({
+    nome: joi.string().pattern(/[\p{L}]+/u).required().messages({
         'any.required': mensagensErro.obrigatorio,
         'string.empty': mensagensErro.obrigatorio,
         'string.pattern.base': mensagensErro.stringInvalida,
@@ -19,6 +19,30 @@ const esquemaCliente = joi.object({
         'any.required': mensagensErro.obrigatorio,
         'string.empty': mensagensErro.obrigatorio,
         'string.pattern.base': mensagensErro.campoInvalido,
+    }),
+    cep: joi.number().messages({
+        'number.base': mensagensErro.numeroInvalido,
+    }),
+
+    rua: joi.string().messages({
+        'string.empty': mensagensErro.campoInvalido
+    }),
+
+    numero: joi.number().messages({
+        'number.base': mensagensErro.numeroInvalido,
+        'number.integer': mensagensErro.numeroInvalido
+
+    }),
+    cidade: joi.string().messages({
+        'string.empty': mensagensErro.campoInvalido
+    }),
+    bairro: joi.string().messages({
+        'string.empty': mensagensErro.campoInvalido
+    }),
+
+    estado: joi.string().max(2).messages({
+        'string.empty': mensagensErro.campoInvalido,
+        'string.max': "Forneça apenas as siglas do Estado",
     })
 })
 

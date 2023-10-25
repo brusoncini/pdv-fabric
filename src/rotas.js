@@ -4,6 +4,7 @@ const { registrarUsuario, perfilUsuario, login, editarUsuario } = require("./con
 const { listarCategorias } = require("./controladores/categorias");
 const { registrarCliente, editarCliente, listarClientes, detalharCliente } = require("./controladores/clientes")
 const { registrarProduto, editarProduto, listarProdutos, detalharProduto, deletarProduto } = require("./controladores/produtos");
+const { listarPedidos } = require("./controladores/pedidos")
 const validarRequisicao = require("./intermediarios/validarCorpoRequisicao");
 const esquemaUsuario = require("./intermediarios/esquemaUsuario");
 const esquemaLogin = require("./intermediarios/esquemaLogin");
@@ -33,5 +34,7 @@ rotas.post("/cliente", validarRequisicao(esquemaCliente), registrarCliente);
 rotas.put("/cliente/:id", validarRequisicao(esquemaCliente), editarCliente);
 rotas.get("/cliente", listarClientes);
 rotas.get("/cliente/:id", detalharCliente);
+
+rotas.get("/pedido", listarPedidos);
 
 module.exports = rotas;
