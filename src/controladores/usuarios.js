@@ -17,9 +17,6 @@ const registrarUsuario = async (req, res) => {
       });
     }
 
-    if (!email) {
-      return res.status(401).json({ mensagem: "O campo email é obrigatório" });
-    }
     const senhaCriptografada = await bcrypt.hash(senha, 10);
 
     const novoUsuario = {
@@ -81,12 +78,6 @@ const editarUsuario = async (req, res) => {
   const { nome, email, senha } = req.body;
   const { id } = req.usuario;
 
-  if (!nome && !email && !senha) {
-    return res.status(400).json({
-      Mensagem: "É obrigatório informar ao menos um campo para atualização.",
-    });
-  }
-
   try {
     const body = {};
 
@@ -111,12 +102,12 @@ const editarUsuario = async (req, res) => {
       body.senha = await bcrypt.hash(senha, 10);
     }
 
-    const usuarioAtualizado = await knex("usuarios").where({ id }).update(body).returning('*');
+    const [usuarioAtualizado] = await knex("usuarios").where({ id }).update(body).returning('*');
 
-    if (!usuarioAtualizado) {
+    if (![usuarioAtualizado]) {
       return res.status(400).json("Não foi possível atualizar o usuário");
     }
-
+    delete usuarioAtualizado.senha;
     return res
       .status(200)
       .json({ Mensagem: "Usuário atualizado com sucesso!", usuarioAtualizado });
