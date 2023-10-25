@@ -136,6 +136,12 @@ const detalharProduto = async (req, res) => {
 const deletarProduto = async (req, res) => {
   const { id } = req.params;
 
+  const pedidosComProduto = await knex('pedido_produtos').where('produto_id', id);
+
+  if (pedidosComProduto.length > 0) {
+    return res.status(409).json({ mensagem: "O produto não pode ser excluído pois está vinculado a um pedido." });
+  }
+
   try {
     const produtoDeletado = await knex("produtos").where("id", id).del();
 
