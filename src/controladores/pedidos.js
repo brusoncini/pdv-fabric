@@ -92,8 +92,50 @@ const registrarPedido = async (req, res) => {
 
 
 const listarPedidos = async (req, res) => {
-}
+   const { cliente_id } = req.query
+   //esta rota precisa de testes, testei só com 1 usuario e 1 pedido.. Pois ainda não tinha cadastro de pedidos.
+   try {
+      if (cliente_id) { //busca pedido pelo id, 
 
+         if (isNaN(cliente_id)) {
+            return res.status(400)
+               .json({
+                  mensagem: 'Para listar pedidos do cliente digite um número válido.'
+               });
+         }
+
+         const pedidos = await knex("pedidos")
+            .where('cliente_id', cliente_id)
+            .select('*');
+
+         for (let pedido of pedidos) {
+
+            const pedidoProdutos = await knex("pedido_produtos")
+               .where("pedido_id", pedido.id)
+               .select('*')
+            pedido.pedido_produtos = pedidoProdutos;
+         }
+
+         return res.status(200).json(pedidos)
+      } else {
+         const pedidos = await knex("pedidos")
+            .select('*');
+
+         for (let pedido of pedidos) {
+            const pedidoProdutos = await knex("pedido_produtos")
+               .where('pedido_id', pedido.id)
+               .select('*')
+            pedido.pedido_produtos = pedidoProdutos;
+         }
+
+         return res.status(200).json(pedidos);
+      }
+
+   } catch (error) {
+      return res.status(500).json(error.message)
+   }
+
+}
 
 module.exports = {
    listarPedidos,
