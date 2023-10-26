@@ -32,7 +32,7 @@ Este projeto consiste em uma API para um PDV (Ponto de Venda) ou Frente de Caixa
 <details>
 <summary><b>Banco de Dados</b></summary>
 
-A API utiliza um banco de dados PostgreSQL chamado `pdv`. O script de criação das tabelas e inserção das categorias está disponível no projeto.
+A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `Elephantsql`. O script de criação das tabelas e inserção das categorias está disponível no projeto. Certifique-se de executar o script no banco de dados PostgreSQL fornecido pelo serviço Elephantsql para configurar as tabelas necessárias.
 
 </details>
 
