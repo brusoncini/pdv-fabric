@@ -2,7 +2,7 @@ const joi = require('joi')
 const mensagensErro = require('../utilidades/mensagensErro')
 
 const esquemaUsuario = joi.object({
-    nome: joi.string().pattern(/^[A-Za-z\s]+$/).required().messages({
+    nome: joi.string().pattern(/[\p{L}]+/u).required().messages({
         'any.required': mensagensErro.obrigatorio,
         'string.empty': mensagensErro.obrigatorio,
         'string.pattern.base': mensagensErro.stringInvalida,
