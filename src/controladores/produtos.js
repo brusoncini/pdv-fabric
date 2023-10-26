@@ -2,7 +2,8 @@ const knex = require("../conexao");
 const { excluirImagem, enviarImagem } = require("../servicos/configImagem");
 
 const registrarProduto = async (req, res) => {
-  const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
+  let { descricao, quantidade_estoque, valor, categoria_id } = req.body;
+  descricao = descricao.toLowerCase();
 
 
   try {
@@ -16,8 +17,12 @@ const registrarProduto = async (req, res) => {
         .json({ mensagem: "A categoria informada não existe" });
     }
 
+    const palavrasDescricao = descricao.split(" ")
+
+    const descricaoFormatada = palavrasDescricao.filter(palavra => palavra.trim() !== "").join(" ")
+
     const produtoExistente = await knex("produtos")
-      .where("descricao", descricao)
+      .where("descricao", descricaoFormatada)
       .first();
 
     if (produtoExistente) {
@@ -27,7 +32,7 @@ const registrarProduto = async (req, res) => {
     }
 
     const novoProduto = {
-      descricao,
+      descricao: descricaoFormatada,
       quantidade_estoque,
       valor,
       categoria_id,
@@ -43,7 +48,8 @@ const registrarProduto = async (req, res) => {
 
 const editarProduto = async (req, res) => {
   const { id } = req.params;
-  const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
+  let { descricao, quantidade_estoque, valor, categoria_id } = req.body;
+  descricao = descricao.toLowerCase();
 
   try {
     const encontrarProduto = await knex("produtos").where({ id }).first();
@@ -51,13 +57,20 @@ const editarProduto = async (req, res) => {
     if (!encontrarProduto) {
       return res.status(404).json({ Mensagem: "Produto não encontrado!" })
     }
-    const produtoExistente = await knex("produtos").where("descricao", descricao).count("id as count")
+    const palavrasDescricao = descricao.split(" ")
 
-    if (produtoExistente > 0) {
+    const descricaoFormatada = palavrasDescricao.filter(palavra => palavra.trim() !== "").join(" ")
+
+    const produtoExistente = await knex("produtos")
+      .where("descricao", descricaoFormatada)
+      .count("id as count")
+      .first();
+
+    if (produtoExistente) {
       return res.status(400).json({ mensagem: "A descrição informada já está em uso" })
     }
     const produtoAtualizado = await knex("produtos")
-      .update({ descricao, quantidade_estoque, valor, categoria_id })
+      .update({ descricao: descricaoFormatada, quantidade_estoque, valor, categoria_id })
       .where({ id })
       .returning("*");
 

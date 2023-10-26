@@ -2,9 +2,10 @@ const joi = require('joi')
 const mensagensErro = require('../utilidades/mensagensErro')
 
 const esquemaProduto = joi.object({
-    descricao: joi.string().required().messages({
+    descricao: joi.string().regex(/^[a-zA-Z0-9\s]+$/).required().messages({
         'any.required': mensagensErro.obrigatorio,
         'string.empty': mensagensErro.obrigatorio,
+        'string.pattern.base': 'A descrição deve conter apenas letras, números e espaços.'
     }),
 
     quantidade_estoque: joi.number().required().positive().messages({
