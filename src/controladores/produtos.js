@@ -66,7 +66,7 @@ const editarProduto = async (req, res) => {
       .count("id as count")
       .first();
 
-    if (produtoExistente) {
+    if (produtoExistente > 0) {
       return res.status(400).json({ mensagem: "A descrição informada já está em uso" })
     }
     const produtoAtualizado = await knex("produtos")
