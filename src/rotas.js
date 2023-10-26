@@ -1,6 +1,7 @@
 const express = require("express");
 const verificarUsuarioLogado = require('./intermediarios/autenticacao')
-const { registrarUsuario, perfilUsuario, login, editarUsuario } = require("./controladores/usuarios");
+const { login } = require('./controladores/login')
+const { registrarUsuario, perfilUsuario, editarUsuario } = require("./controladores/usuarios");
 const { listarCategorias } = require("./controladores/categorias");
 const { registrarCliente, editarCliente, listarClientes, detalharCliente } = require("./controladores/clientes")
 const { registrarProduto, editarProduto, listarProdutos, detalharProduto, deletarProduto, registrarImagemProduto, atualizarImagemProduto } = require("./controladores/produtos");
