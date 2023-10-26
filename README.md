@@ -1,11 +1,11 @@
-# PDV-Fabric
+# PDV-Fabric 💻
 
-## Descrição
+## Descrição 🌸
 
 Este projeto consiste em uma API para um PDV (Ponto de Venda) ou Frente de Caixa, desenvolvida como parte do desafio de conclusão do curso da Cubos Academy. A API é construída em Node.js, usando PostgreSQL como banco de dados e seguindo os princípios de uma API REST.
 
 <details>
-<summary><b>Recursos</b></summary>
+<summary><b>Recursos 💫</b></summary> 
 
 - Cadastro de Usuários
 - Login de Usuários
@@ -30,14 +30,14 @@ Este projeto consiste em uma API para um PDV (Ponto de Venda) ou Frente de Caixa
 </details>
 
 <details>
-<summary><b>Banco de Dados</b></summary>
+<summary><b>Banco de Dados 📁</b></summary>
 
 A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `Elephantsql`. O script de criação das tabelas e inserção das categorias está disponível no projeto. Certifique-se de executar o script no banco de dados PostgreSQL fornecido pelo serviço Elephantsql para configurar as tabelas necessárias.
 
 </details>
 
 <details>
-<summary><b>Endpoints Principais</b></summary>
+<summary><b>Endpoints Principais 📌</b></summary>
 
 - Cadastro de Usuário: `POST /usuario`
 - Login de Usuário: `POST /login`
@@ -57,7 +57,7 @@ A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `Elephantsql
 </details>
 
 <details>
-<summary><b>Status Codes</b></summary>
+<summary><b>Status Codes ✅</b></summary>
 
 A API retorna os seguintes códigos de status:
 
@@ -73,7 +73,7 @@ A API retorna os seguintes códigos de status:
 </details>
 
 <details>
-<summary><b>Deploy</b></summary>
+<summary><b>Deploy 🚀</b></summary>
 
 O projeto foi implantado e está acessível em [https://nice-pink-cougar-suit.cyclic.app/](https://nice-pink-cougar-suit.cyclic.app/).
 
