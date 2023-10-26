@@ -64,6 +64,11 @@ const editarCliente = async (req, res) => {
     const body = {};
     let rua, bairro, cidade, estado;
 
+    const encontrarCliente = await knex('clientes').where({ id }).first()
+    if (!encontrarCliente) {
+      return res.status(404).json({ Mensagem: "Cliente não encontrado!" })
+    }
+
     if (nome) {
       body.nome = nome;
     }

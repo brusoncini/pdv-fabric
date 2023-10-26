@@ -3,13 +3,14 @@ const verificarUsuarioLogado = require('./intermediarios/autenticacao')
 const { registrarUsuario, perfilUsuario, login, editarUsuario } = require("./controladores/usuarios");
 const { listarCategorias } = require("./controladores/categorias");
 const { registrarCliente, editarCliente, listarClientes, detalharCliente } = require("./controladores/clientes")
-const { registrarProduto, editarProduto, listarProdutos, detalharProduto, deletarProduto } = require("./controladores/produtos");
+const { registrarProduto, editarProduto, listarProdutos, detalharProduto, deletarProduto, registrarImagemProduto, atualizarImagemProduto } = require("./controladores/produtos");
 const { listarPedidos, registrarPedido } = require("./controladores/pedidos")
 const validarRequisicao = require("./intermediarios/validarCorpoRequisicao");
 const esquemaUsuario = require("./intermediarios/esquemaUsuario");
 const esquemaLogin = require("./intermediarios/esquemaLogin");
 const esquemaProduto = require("./intermediarios/esquemaProduto");
 const esquemaCliente = require("./intermediarios/esquemaCliente");
+const multer = require("./intermediarios/multer");
 
 const rotas = express();
 
@@ -28,6 +29,8 @@ rotas.post("/produto", validarRequisicao(esquemaProduto), registrarProduto);
 rotas.put("/produto/:id", validarRequisicao(esquemaProduto), editarProduto);
 rotas.get("/produto", listarProdutos);
 rotas.get("/produto/:id", detalharProduto)
+rotas.post("/produto/:id/imagem", multer.single('imagem'), registrarImagemProduto)
+rotas.patch("/produto/:id/imagem", multer.single('imagem'), atualizarImagemProduto)
 rotas.delete("/produto/:id", deletarProduto);
 
 rotas.post("/cliente", validarRequisicao(esquemaCliente), registrarCliente);

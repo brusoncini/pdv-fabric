@@ -44,6 +44,10 @@ const esquemaCliente = joi.object({
         'string.empty': mensagensErro.campoInvalido,
         'string.max': "Forneça apenas as siglas do Estado",
     })
-})
+}).custom((value, helpers) => {
+    if (value.rua || value.bairro || value.cidade || value.estado && !value.cep) {
+        return helpers.message('Endereço não será registrado sem o campo "cep".');
+    }
+});
 
 module.exports = esquemaCliente
