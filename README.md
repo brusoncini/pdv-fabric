@@ -150,7 +150,7 @@ Todos os dias, antes das sessões ao vivo do curso, tínhamos nossas reuniões d
 
 Adoramos a oportunidade de estar imersas nesse desafio e desfrutar dessa troca diária enriquecedora com as colegas de equipe. Vocês, Equipe 21, são incríveis e é um privilégio trabalhar ao lado de cada uma de vocês!
 
-Agradecemos imensamente à Cubos Academy por proporcionar este momento imersivo de aprendizado em tecnologia. A orientação e o apoio dedicados dos instrutores da Cubos Academy foram fundamentais para o nosso crescimento e aprimoramento nesse campo em constante evolução. Estamos verdadeiramente gratas pela oportunidade de adquirir habilidades valiosas e aplicá-las em um projeto tão significativo.
+Agradecemos imensamente à Cubos Academy por proporcionar este momento imersivo de aprendizado em tecnologia. A orientação e o apoio dedicados dos instrutores ao longo dos meses foram fundamentais para o nosso crescimento e aprimoramento nesse campo em constante evolução. Estamos verdadeiramente gratas pela oportunidade de adquirir habilidades valiosas e aplicá-las em um projeto tão significativo.
 
 <br>
 
