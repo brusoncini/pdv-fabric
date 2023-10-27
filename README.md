@@ -72,7 +72,8 @@ A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `Elephantsql
   
 - Login de Usuário: `POST /login`
 <br>
-  video aqui
+  video aqui..
+  
 - Listagem de Categorias: `GET /categoria`
 <br>
   
