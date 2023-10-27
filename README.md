@@ -129,7 +129,9 @@ A API retorna os seguintes códigos de status:
 
 <details>
 <summary><b>Deploy 🚀</b></summary>
- O projeto foi implantado e está acessível em [https://nice-pink-cougar-suit.cyclic.app/](https://nice-pink-cougar-suit.cyclic.app/).
+O projeto foi implantado e está acessível em <button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; transition-duration: 0.4s; cursor: pointer;">
+  <a href="https://nice-pink-cougar-suit.cyclic.app/" style="color: white; text-decoration: none;">API-PDV-Fabric</a>
+</button>
  
  </details>
  
