@@ -68,46 +68,72 @@ A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `Elephantsql
 
 - Cadastro de Usuário: `POST /usuario`
 <br>
+ 
  video aqui
   
 - Login de Usuário: `POST /login`
 <br>
-  video aqui..
+
+  video aqui
   
 - Listagem de Categorias: `GET /categoria`
 <br>
+
+  video aqui
   
 - Cadastro de Produtos: `POST /produto`
 <br>
 
+  video aqui
+  
 - Edição de Produtos: `PUT /produto/:id`
 <br>
 
+  video aqui
+
 - Listagem de Produtos: `GET /produto`
 <br>
+
+  video aqui
   
 - Detalhamento de Produto: `GET /produto/:id`
 <br>
 
+  video aqui
+
 - Exclusão de Produto por ID: `DELETE /produto/:id`
 <br>
+
+  video aqui
 
 - Cadastro de Clientes: `POST /cliente`
 <br>
 
+  video aqui
+
 - Edição de Clientes: `PUT /cliente/:id`
 <br>
+
+  video aqui
 
 - Listagem de Clientes: `GET /cliente`
 <br>
 
+  video aqui
+
 - Detalhamento de Cliente: `GET /cliente/:id`
 <br>
+
+  video aqui
 
 - Cadastro de Pedidos: `POST /pedido`
 <br>
 
+  video aqui
+  
 - Listagem de Pedidos: `GET /pedido`
+
+  video aqui
 
 </details>
 
