@@ -9,6 +9,6 @@ app.use(express.json());
 app.use(cors());
 app.use(rotas);
 
-app.listen("8000", () => {
-  console.log("Server online on port 8000 🚀");
+app.listen(process.env.PORT, () => {
+  console.log(`Server online on port ${process.env.PORT} 🚀`);
 });
