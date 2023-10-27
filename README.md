@@ -58,8 +58,62 @@ Este projeto consiste em uma API para um PDV (Ponto de Venda) ou Frente de Caixa
 <details>
 <summary><b>Banco de Dados 📁</b></summary>
 
-A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `Elephantsql`. O script de criação das tabelas e inserção das categorias está disponível no projeto. Certifique-se de executar o script no banco de dados PostgreSQL fornecido pelo serviço Elephantsql para configurar as tabelas necessárias.
+A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `ElephantSQL`. O script de criação das tabelas e inserção das categorias está disponível no projeto.
+</details>
 
+<details>
+<summary><b>Como executar o projeto ⚙️</b></summary>
+
+## Pré-requisitos
+
+Antes de executar este projeto, certifique-se de que sua máquina atende aos seguintes pré-requisitos:
+
+- **Aplicativo de teste de API**: Você precisará de um aplicativo de teste de API, como o [Insomnia](https://insomnia.rest) ou o [Postman](https://www.postman.com).
+---
+### Executando com o link do Projeto
+- **Link do Deploy**:  https://nice-pink-cougar-suit.cyclic.app
+
+- Copie o link <br>
+- Execute os endpoints no seu aplicativo de teste de API seguindo o passo a passo dos Endpoints 📌 abaixo
+
+----
+
+### Executando a aplicação em modo de desenvolvimento
+
+#### Ferramentas Necessárias
+
+Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
+
+- **Git**
+- **Node.js**
+- **VSCode** ou outra IDE de sua escolha
+- **PostgreSQL**: Um sistema de gerenciamento de banco de dados relacional.
+- **Beekeeper Studio** ou um software similar para gerenciamento de bancos de dados.
+
+
+
+### Siga as etapas abaixo para configurar o projeto:
+
+1. Clone este repositório em sua máquina.
+
+2. Abra a pasta do projeto na sua IDE.
+
+3. Crie o banco de dados a partir do arquivo de despejo `sql.sql`.
+
+4. Instale as dependências executando o seguinte comando:
+
+   ```bash
+   npm install
+
+5. Crie um arquivo de variáveis de ambiente chamado .env com as informações necessárias. Certifique-se de incluir as configurações para o Bucket e SMTP. Você pode usar o arquivo .env.example como modelo.
+
+6.  Execute a aplicação em modo de desenvolvimento com o seguinte comando:
+    ```bash
+    npm run dev
+
+7. Certifique-se de que as variáveis do banco de dados, porta,  Bucket e SMTP no arquivo .env estejam configuradas corretamente para que o projeto funcione conforme o esperado.
+
+8. Execute os endpoints no seu aplicativo de teste de API seguindo o passo a passo dos Endpoints 📌 abaixo
 </details>
 
 <details>
