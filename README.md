@@ -68,10 +68,11 @@ A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `Elephantsql
 
 - Cadastro de Usuário: `POST /usuario`
 <br>
+ video aqui
   
 - Login de Usuário: `POST /login`
 <br>
-  
+  video aqui
 - Listagem de Categorias: `GET /categoria`
 <br>
   
