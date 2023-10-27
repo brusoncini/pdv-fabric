@@ -129,18 +129,37 @@ A API retorna os seguintes códigos de status:
 
 <details>
 <summary><b>Deploy 🚀</b></summary>
+ O projeto foi implantado e está acessível em [https://nice-pink-cougar-suit.cyclic.app/](https://nice-pink-cougar-suit.cyclic.app/).
+ 
+ </details>
+ 
+<details>
 
-O projeto foi implantado e está acessível em [https://nice-pink-cougar-suit.cyclic.app/](https://nice-pink-cougar-suit.cyclic.app/).
+
+
+ 
+ <summary><b>Colaboração e Trabalho em Equipe 🤝</b></summary>
+
+<br>
+
+A criação da API PDV-Fabric foi uma jornada que marcou nossa união como o Grupo Tech Girls. Cada uma de nós se dedicou apaixonadamente a esse projeto, demonstrando um empenho extraordinário e uma colaboração excepcional.
+
+O trabalho em grupo foi meticulosamente distribuído, permitindo que cada uma de nós desempenhasse um papel ativo, integrando-se e auxiliando as outras. Utilizamos o Trello como nosso principal aliado, onde planejamos minuciosamente cada etapa e administramos com clareza as tarefas de cada integrante.
+
+Todos os dias, antes das sessões ao vivo do curso, tínhamos nossas reuniões diárias, momentos cruciais em que nos dedicamos intensamente para entregar um trabalho de qualidade e alcançar a satisfação pessoal. A motivação e o engajamento que compartilhamos ao longo desse desafio enriqueceram nossa experiência diária e fortaleceram nossos laços como equipe.
+
+Adoramos a oportunidade de estar imersas nesse desafio e desfrutar dessa troca diária enriquecedora com as colegas de equipe. Vocês, Equipe 21, são incríveis e é um privilégio trabalhar ao lado de cada uma de vocês!
+
+Agradecemos imensamente à Cubos Academy por proporcionar este momento imersivo de aprendizado em tecnologia. A orientação e o apoio dedicados dos instrutores da Cubos Academy foram fundamentais para o nosso crescimento e aprimoramento nesse campo em constante evolução. Estamos verdadeiramente gratas pela oportunidade de adquirir habilidades valiosas e aplicá-las em um projeto tão significativo.
+
+<br>
+
 
 </details>
 
 
 
 
-
-
-
-</details>
 
 ![image](https://github.com/brusoncini/pdv-fabric/assets/129636115/d7372fd3-4e3b-4004-bc3c-6fdf69c726df)
 
