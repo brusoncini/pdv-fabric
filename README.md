@@ -1,5 +1,4 @@
-[Imgur](https://imgur.com/i4tDWiG)
-
+![imagem](https://i.imgur.com/i4tDWiG.png)
 
 # PDV-Fabric 💻
 
