@@ -1,6 +1,6 @@
 ![imagem](https://i.imgur.com/i4tDWiG.png)
 
-# PDV-Fabric 💻
+# PDV-Fabric 👩‍💻
 
 ## Descrição 🌸
 
