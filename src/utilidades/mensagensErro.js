@@ -13,5 +13,8 @@ module.exports = {
     6 - Brinquedos 
     7 - Moda 
     8 - Bebê 
-    9 - Games`
+    9 - Games`,
+    msgQuantidadeMinima: 'A quantidade_produto deve ser no mínimo 1',
+    bodyInvalido: 'O corpo da solicitação deve ser um objeto JSON',
+    msgArrayMinimo: 'Necessário informar ao menos 1 item para "pedido_produtos"'
 }

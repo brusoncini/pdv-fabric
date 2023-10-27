@@ -12,9 +12,9 @@ const esquemaLogin = require("./intermediarios/esquemaLogin");
 const esquemaProduto = require("./intermediarios/esquemaProduto");
 const esquemaCliente = require("./intermediarios/esquemaCliente");
 const multer = require("./intermediarios/multer");
+const esquemaPedido = require("./intermediarios/esquemaPedido");
 
 const rotas = express();
-
 
 rotas.get("/categoria", listarCategorias);
 rotas.post("/usuario", validarRequisicao(esquemaUsuario), registrarUsuario);
@@ -40,6 +40,6 @@ rotas.get("/cliente", listarClientes);
 rotas.get("/cliente/:id", detalharCliente);
 
 rotas.get("/pedido", listarPedidos);
-rotas.post("/pedido", registrarPedido);
+rotas.post("/pedido", validarRequisicao(esquemaPedido), registrarPedido);
 
 module.exports = rotas;
