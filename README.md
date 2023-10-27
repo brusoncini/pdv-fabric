@@ -64,20 +64,47 @@ A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `Elephantsql
 
 <details>
 <summary><b>Endpoints Principais 📌</b></summary>
+<br>
 
 - Cadastro de Usuário: `POST /usuario`
+<br>
+  
 - Login de Usuário: `POST /login`
+<br>
+  
 - Listagem de Categorias: `GET /categoria`
+<br>
+  
 - Cadastro de Produtos: `POST /produto`
+<br>
+
 - Edição de Produtos: `PUT /produto/:id`
+<br>
+
 - Listagem de Produtos: `GET /produto`
+<br>
+  
 - Detalhamento de Produto: `GET /produto/:id`
+<br>
+
 - Exclusão de Produto por ID: `DELETE /produto/:id`
+<br>
+
 - Cadastro de Clientes: `POST /cliente`
+<br>
+
 - Edição de Clientes: `PUT /cliente/:id`
+<br>
+
 - Listagem de Clientes: `GET /cliente`
+<br>
+
 - Detalhamento de Cliente: `GET /cliente/:id`
+<br>
+
 - Cadastro de Pedidos: `POST /pedido`
+<br>
+
 - Listagem de Pedidos: `GET /pedido`
 
 </details>
@@ -112,5 +139,8 @@ O projeto foi implantado e está acessível em [https://nice-pink-cougar-suit.cy
 
 
 </details>
+
+![image](https://github.com/brusoncini/pdv-fabric/assets/129636115/d7372fd3-4e3b-4004-bc3c-6fdf69c726df)
+
 
 ###### tags:  `Tech Girls` `PDV-Fabric` `Back-end` `Módulo 5` `NodeJS` `PostgreSQL` `API REST` `Desafio Final` `Cubos-Academy`
