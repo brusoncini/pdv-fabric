@@ -156,6 +156,12 @@ Agradecemos imensamente à Cubos Academy por proporcionar este momento imersivo 
 
 <br>
 
+<p align="center">
+  <img src="https://github.com/brusoncini/pdv-fabric/assets/129636115/352ce705-45f2-4774-8901-4039c79d50b2" alt="Descrição da imagem">
+</p>
+
+<br>
+
 
 </details>
 
