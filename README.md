@@ -91,14 +91,14 @@ A API utiliza um banco de dados `PostgresSQL` hospedado no serviço `Elephantsql
 Siga a demonstração abaixo para usar o token de autenticação
 <br>
 
-![token_auth](https://github.com/brusoncini/pdv-fabric/assets/136760650/d5a59dba-13b1-4387-b731-a365f7c95a37)
+  ![token_auth](https://github.com/brusoncini/pdv-fabric/assets/136760650/d5a59dba-13b1-4387-b731-a365f7c95a37)
 
 ---
 
 - Editar Usuário `PUT /usuario`
-  <br>
+<br>
 
-  ![editar_usuario](https://github.com/brusoncini/pdv-fabric/assets/136760650/548d74a5-78b8-4c04-9dc8-8faa6451bb48)
+ ![editar_usuario](https://github.com/brusoncini/pdv-fabric/assets/136760650/548d74a5-78b8-4c04-9dc8-8faa6451bb48)
 
   ---
   
@@ -112,17 +112,21 @@ Siga a demonstração abaixo para usar o token de autenticação
 - Edição de Produtos: `PUT /produto/:id`
 <br>
 
-  ![editar_produto](https://github.com/brusoncini/pdv-fabric/assets/136760650/71e505c5-13c0-44ec-8502-2c189fe94f0f)
+   ![editar_produto](https://github.com/brusoncini/pdv-fabric/assets/136760650/71e505c5-13c0-44ec-8502-2c189fe94f0f)
+  
   ---
+  
  - Cadastrar a imagem de um produto: `POST /produto/:id/imagem`
-    <br>
+ <br>
 
-    ![enviar_imagem](https://github.com/brusoncini/pdv-fabric/assets/136760650/040be174-16d2-4a71-84e7-5cab4d42c367)
-    ---
+ ![enviar_imagem](https://github.com/brusoncini/pdv-fabric/assets/136760650/040be174-16d2-4a71-84e7-5cab4d42c367)
+ 
+ ---
+    
  - Editar a imagem de um produto: `PATCH /produto/:id/imagem`
-      <br>
+<br>
       
-  ![atualizar_imagem](https://github.com/brusoncini/pdv-fabric/assets/136760650/875dac63-e5ed-4e1a-a562-61d00165dd0c)    
+ ![atualizar_imagem](https://github.com/brusoncini/pdv-fabric/assets/136760650/875dac63-e5ed-4e1a-a562-61d00165dd0c)    
   
 ---
 
@@ -130,9 +134,11 @@ Siga a demonstração abaixo para usar o token de autenticação
 <br>
 
  ![listar_produtos](https://github.com/brusoncini/pdv-fabric/assets/136760650/ffa75be1-77ba-4dda-ba84-308e45f750a3)
+ 
  ---
+ 
  - Listagem de Produtos com QUERY para obter produtos de uma determinada categoria: `GET /produto?categoria_id=`
-   <br>
+<br>
    
  ![listar_produtos_query](https://github.com/brusoncini/pdv-fabric/assets/136760650/b8a7f1f8-e3ba-4f43-8147-2ca089311b10)
  
@@ -148,53 +154,56 @@ Siga a demonstração abaixo para usar o token de autenticação
 - Exclusão de Produto por ID: `DELETE /produto/:id`
 <br>
 
-  ![excluir_produto](https://github.com/brusoncini/pdv-fabric/assets/136760650/9e22fb6c-77b5-43ae-8529-3dc37a60b394)
+   ![excluir_produto](https://github.com/brusoncini/pdv-fabric/assets/136760650/9e22fb6c-77b5-43ae-8529-3dc37a60b394)
 
   ---
 
 - Cadastro de Clientes: `POST /cliente`
 <br>
 
- ![cadastrar_cliente](https://github.com/brusoncini/pdv-fabric/assets/136760650/d1d8efab-1509-423c-ae42-dd17d70ac8ff)
+  ![cadastrar_cliente](https://github.com/brusoncini/pdv-fabric/assets/136760650/d1d8efab-1509-423c-ae42-dd17d70ac8ff)
 
  ---
 
 - Edição de Clientes: `PUT /cliente/:id`
 <br>
 
-  ![editar_cliente](https://github.com/brusoncini/pdv-fabric/assets/136760650/41233092-72b1-4053-b333-0a8a8ff5d75d)
+   ![editar_cliente](https://github.com/brusoncini/pdv-fabric/assets/136760650/41233092-72b1-4053-b333-0a8a8ff5d75d)
 
   ---
 
 - Listagem de Clientes: `GET /cliente`
 <br>
 
-  ![listar_clientes](https://github.com/brusoncini/pdv-fabric/assets/136760650/f25ce1e2-0af4-4783-ac9e-d54adde97e98)
+   ![listar_clientes](https://github.com/brusoncini/pdv-fabric/assets/136760650/f25ce1e2-0af4-4783-ac9e-d54adde97e98)
 
   ---
 
 - Detalhamento de Cliente: `GET /cliente/:id`
 <br>
 
-  ![detalhar_cliente](https://github.com/brusoncini/pdv-fabric/assets/136760650/93d95b43-6559-4176-b204-a6f8048221aa)
+   ![detalhar_cliente](https://github.com/brusoncini/pdv-fabric/assets/136760650/93d95b43-6559-4176-b204-a6f8048221aa)
 
   ---
 
 - Cadastro de Pedidos: `POST /pedido`
 <br>
 
-  ![registrar_pedido](https://github.com/brusoncini/pdv-fabric/assets/136760650/354528c7-c773-4518-a7b9-89c572661831)
+   ![registrar_pedido](https://github.com/brusoncini/pdv-fabric/assets/136760650/354528c7-c773-4518-a7b9-89c572661831)
 
   ---
   
 - Listagem de Pedidos: `GET /pedido`
+<br>
 
  ![listar_pedidos](https://github.com/brusoncini/pdv-fabric/assets/136760650/9c47047e-f2d4-4b9f-afa7-febd2689eb13)
+ 
  ---
+ 
  - Listagem de Pedidos com QUERY para obter pedidos de um determinado cliente: `GET /pedido?cliente_id=`
-   <br>
+ <br>
 
- ![listar_pedidos_query](https://github.com/brusoncini/pdv-fabric/assets/136760650/402fab0f-6b3e-49ec-bdf8-fcd8977f9e44)
+  ![listar_pedidos_query](https://github.com/brusoncini/pdv-fabric/assets/136760650/402fab0f-6b3e-49ec-bdf8-fcd8977f9e44)
 
  ---
 
