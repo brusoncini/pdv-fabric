@@ -1,14 +1,16 @@
 const nodemailer = require('nodemailer')
 
+
 const transportador = nodemailer.createTransport({
-    host: 'smtp.mailosaur.net',
-    port: 587,
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
     auth: {
-        user: '7tlvhdnv@mailosaur.net',
-        pass: '0T1IlgewdJMVems7iqwKDcNDbyKT8rLc'
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
     },
     secure: false,
     tls: { rejectUnauthorized: false }
-})
+});
+
 
 module.exports = transportador
