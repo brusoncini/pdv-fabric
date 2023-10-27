@@ -2,13 +2,9 @@ const knex = require("../conexao");
 const compiladorHTML = require('../utilidades/compiladorHTML')
 const transportador = require('../nodemailer')
 
-
 const registrarPedido = async (req, res) => {
    const { cliente_id, pedido_produtos } = req.body;
 
-   if (!cliente_id || isNaN(cliente_id) || !pedido_produtos || pedido_produtos.length === 0) {
-      return res.status(400).json({ Mensagem: 'Campos obrigatórios não fornecidos.' });
-   }
 
    let valorTotal = 0;
    const pedido_produto = [];
@@ -77,10 +73,6 @@ const registrarPedido = async (req, res) => {
          html: email_html
       });
 
-
-
-
-
       return res.status(201).json({ Mensagem: 'Pedido criado com sucesso.', registro });
    } catch (error) {
       console.log(error)
@@ -88,7 +80,6 @@ const registrarPedido = async (req, res) => {
 
    }
 };
-
 
 
 const listarPedidos = async (req, res) => {
