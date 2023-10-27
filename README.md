@@ -11,7 +11,7 @@ Este projeto consiste em uma API para um PDV (Ponto de Venda) ou Frente de Caixa
 
 - JavaScript
 - Nodejs
-- ElephantSQL e PostrgeSQL para criação banco de dados
+- ElephantSQL e PostgreSQL para criação banco de dados
 - Npm para instalação de dependências
 - Express para conexão com o servidor
 - JSON Web Token (JWT) para gerar token de autenticação
