@@ -7,18 +7,27 @@
 Este projeto consiste em uma API para um PDV (Ponto de Venda) ou Frente de Caixa, desenvolvida como parte do desafio de conclusão do curso da Cubos Academy. A API é construída em Node.js, usando PostgreSQL como banco de dados e seguindo os princípios de uma API REST.
 
 <details>
-<summary><b>Ferramentas e Tecnologias 🔧</b></summary>
+<summary><b>FERRAMENTAS E TECNOLOGIAS 🔧</b></summary>
 
 - JavaScript
 - Nodejs
 - ElephantSQL e PostrgeSQL para criação banco de dados
-- npm para instalação de dependências
-- express para conexão com o servidor
-- json web token (JWT) para gerar token de autenticação
-- nodemailer para disparo de e-mails
-- knex para conexão com o banco de dados
-- aws-sdk para salvar imagem em banco de dados
-- joi para validações
+- Npm para instalação de dependências
+- Express para conexão com o servidor
+- JSON Web Token (JWT) para gerar token de autenticação
+- Nodemailer para disparo de e-mails
+- Knex para conexão com o banco de dados
+- AWS-SDK para salvar imagem em banco de dados
+- Joi para validações
+- Bcrypt para criptografia de senha
+- Axios para requisições HTTP
+- Cors para permitir solicitações de recursos de diferentes origens (Cross-Origin Resource Sharing)
+- Dotenv para configuração de variáveis de ambiente
+- Handlebars para renderização de modelos do lado do servidor
+- Multer para upload de arquivos no banco de dados
+- Pg para conexão com PostgreSQL
+- Nodemon para diminuir a necessidade de reconexão com servidor
+
 </details>
 
 <details>
